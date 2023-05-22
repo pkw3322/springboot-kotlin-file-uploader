@@ -5,9 +5,8 @@ plugins {
 	id("org.springframework.boot") version "2.5.7"
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
 
-	kotlin("jvm") version "1.5.31"
+	kotlin("jvm") version "1.7.22"
 	kotlin("plugin.spring") version "1.5.31"
-	kotlin("kapt") version "1.5.31"
 	kotlin("plugin.jpa") version "1.5.31"
 
 	id ("org.jetbrains.kotlin.plugin.allopen") version "1.5.21"
@@ -41,14 +40,14 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-hateoas")
+	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+	implementation("org.springframework.boot:spring-boot-starter-web")
 
 	implementation("com.querydsl:querydsl-jpa")
-	kapt(group = "com.querydsl", name = "querydsl-apt", classifier = "jpa")
-	sourceSets.main {
-		withConvention(KotlinSourceSet::class) {
-			kotlin.srcDir("$buildDir/generated/source/kapt/main")
-		}
-	}
+
 
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -61,11 +60,14 @@ dependencies {
 		exclude(group="junit", module="unit")
 	}
 
-	testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")
-	testImplementation("org.junit.jupiter:junit-jupiter-engine:5.5.2")
-	testImplementation("org.junit.jupiter:junit-jupiter-params:5.5.2")
+	testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
+	testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+	testImplementation("org.junit.jupiter:junit-jupiter-params:5.7.0")
 	testImplementation("org.springframework.security:spring-security-test")
-
+	implementation("com.github.f4b6a3:ulid-creator:5.1.0")
+	implementation("org.hibernate.validator:hibernate-validator:8.0.0.Final")
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.security:spring-security-test")
 	implementation("io.jsonwebtoken:jjwt:0.9.1")
 }
 
