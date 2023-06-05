@@ -22,7 +22,6 @@ class ContentService (val contentRepository: ContentRepository,val contentImageR
         return contentRepository.findAll()
     }
 
-    @Transactional
     fun saveContent(title:String,body:String,file:MultipartFile?){
         file?.let{
             val originalFileName = file.originalFilename ?: UUID.randomUUID().toString()
@@ -40,7 +39,6 @@ class ContentService (val contentRepository: ContentRepository,val contentImageR
         }
     }
 
-    @Transactional
     fun getContent(contentId: UUID): ContentResponseDTO {
         var content: Content =
             contentRepository.findByIdOrNull(contentId) ?: throw IllegalArgumentException("존재하지 않는 게시물 입니다.")
